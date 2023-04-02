@@ -1,4 +1,4 @@
-# THIS IS THE ONE THAT WORKS PERFECTLY
+
 import csv
 import sys
 
@@ -96,7 +96,7 @@ def shortest_path(source, target):
     frontier = QueueFrontier()
     frontier.add(start)
 
-    # initialise an empty explored set - have to do this ourselves, nothing in util.py
+    # initialise an empty explored set - nothing in util.py
     # will be an empty explored set of person_ids as they are the nodes
     explored = set()
 
@@ -108,7 +108,7 @@ def shortest_path(source, target):
         # Remove a node from the frontier - queue frontier bc BFS.
         node = frontier.remove()
         # If node contains goal state return solution
-        # visualise as though you're at the solution and working backwards
+
         if node.state == target:
             actions = []
             actions2 = []
@@ -119,13 +119,11 @@ def shortest_path(source, target):
             actions.reverse()
             return(actions)
 
-            # this must be a list of movies and stars, not too hard to append tbh
-            # this will be a whole process in and of itself
+            
         # else add node to explored set.
         explored.add(node.state)
         # expand node IE add neighbours to frontier
         for movie_id, person_id in neighbors_for_person(node.state):
-            # print(f"Neighbour Contents: Actor: {id_to_name(person_id)} Movie: {id_to_movie(movie_id)}")
             if not frontier.contains_state(person_id) and person_id not in explored:
                 child = Node(state = person_id, parent = node, action = movie_id)
                 frontier.add(child)
